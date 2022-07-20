@@ -22,6 +22,7 @@ async function run() {
         console.log("Database Connected");
         const blogsCollation = database.collection('blogs');
 
+        // POST API BLOGS
         app.post('/createBlogs', async (req, res) => {
             const name = req.body.name;
             const tittle = req.body.tittle;
@@ -38,7 +39,14 @@ async function run() {
             }
             const result = await blogsCollation.insertOne(blogsCreate);
             res.json(result);
-        })
+        });
+
+        // GET API
+        app.get('/blogs', async (req, res) => {
+            const cursor = blogsCollation.find({});
+            const result = await cursor.toArray();
+
+        });
 
 
     } finally {
