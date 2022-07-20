@@ -45,7 +45,7 @@ async function run() {
         app.get('/blogs', async (req, res) => {
             const cursor = blogsCollation.find({});
             const result = await cursor.toArray();
-
+            res.json(result)
         });
 
 
