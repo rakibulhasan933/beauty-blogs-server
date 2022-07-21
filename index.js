@@ -3,6 +3,7 @@ const { MongoClient, ServerApiVersion } = require('mongodb');
 const cors = require('cors');
 const dotenv = require('dotenv').config();
 const fileUpload = require('express-fileupload');
+const ObjectId = require('mongodb').ObjectId;
 
 const app = express()
 const port = process.env.PORT || 5000;
@@ -49,6 +50,14 @@ async function run() {
             const result = await cursor.toArray();
             res.json(result)
         });
+
+        // GET API ID
+        app.get('/blogs/:id', async (req, res) => {
+            const id = req.params.id;
+            const query = { _id: ObjectId(id) };
+            const result = await blogsCollation.findOne(query);
+            res.json(result);
+        })
 
 
     } finally {
