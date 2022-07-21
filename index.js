@@ -27,6 +27,7 @@ async function run() {
             const name = req.body.name;
             const tittle = req.body.tittle;
             const dec = req.body.dec;
+            const time = req.body.time;
             const pic = req.files.image;
             const picData = pic.data;
             const encodedPic = picData.toString('base64');
@@ -35,6 +36,7 @@ async function run() {
                 name,
                 tittle,
                 dec,
+                time,
                 image: imageBuffer
             }
             const result = await blogsCollation.insertOne(blogsCreate);
