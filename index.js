@@ -27,6 +27,7 @@ async function run() {
         app.post('/createBlogs', async (req, res) => {
             const name = req.body.name;
             const tittle = req.body.tittle;
+            const photo = req.body.photo;
             const dec = req.body.dec;
             const time = req.body.time;
             const pic = req.files.image;
@@ -38,6 +39,7 @@ async function run() {
                 tittle,
                 dec,
                 time,
+                photo,
                 image: imageBuffer
             }
             const result = await blogsCollation.insertOne(blogsCreate);
